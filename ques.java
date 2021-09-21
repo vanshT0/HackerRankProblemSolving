@@ -806,21 +806,105 @@ public class ques {
 
     public static void extraLong(int n) {
 
-        BigInteger bi= new BigInteger("1");
-     
+        BigInteger bi = new BigInteger("1");
 
         for (int i = 1; i <= n; i++) {
-          bi = bi.multiply(BigInteger.valueOf(i));
+            bi = bi.multiply(BigInteger.valueOf(i));
         }
         System.out.print(bi);
-      
+
+    }
+
+    // Stick Length
+
+    // public static int minimum(List<Integer> arr) {
+    // int minEle = (int) 1e9;
+    // for (int i = 0; i < arr.size(); i++) {
+    // if (arr.get(i) < minEle)
+    // minEle = arr.get(i);
+    // }
+    // return minEle;
+    // }
+
+    // public static int findCount(List<Integer> arr, int ele) {
+    // int count = 0;
+    // for (int i = 0; i < arr.size(); i++) {
+    // if (ele == arr.get(i))
+    // count++;
+    // }
+    // return count;
+    // }
+
+    public static List<Integer> cutTheSticks(List<Integer> list) {
+        List<Integer> ll = new ArrayList<Integer>(list.size());
+        Collections.sort(list);
+        ll.add(list.size());
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i) != list.get(i - 1))
+                ll.add(list.size() - i);
+        }
+        return ll;
+
+    }
+
+    // String append Delete
+
+    public static String appendAndDelete(String s, String t, int k) {
+        int count = 0;
+        String str = "Yes";
+        int m = s.length();
+        int n = t.length();
+
+        int diff = n - m;
+
+        if(diff > 0){
+            if(diff % 2 == 0 && k % 2 ==0) str = "Yes";
+            else if(diff % 2 != 0 && k % 2 !=0) str = "Yes";
+            else str = "No";
+        }
+          
         
+        for (int i = 0; i < Math.min(m, n); i++) {
+            if (s.charAt(i) == t.charAt(i)){
+                count++;
+
+                System.out.println(s.charAt(i) + " " + count + " " +  t.charAt(i));
+            }
+            else{
+                break;
+            }
+                
+        }
+       
+        if (m + n <= k)
+        return str;
+
+        else {
+
+            if (count == m && count == n && k >= 2)
+                return str;
+
+            if (k < (m + n) - (2 * count) )
+                str = "No";
+        }
+        return str;
 
     }
 
     public static void main(String[] args) {
+        // List<Integer> list = new ArrayList<Integer>();
+        // list.add(5);
+        // list.add(4);
+        // list.add(4);
+        // list.add(2);
+        // list.add(2);
+        // list.add(8);
 
-        extraLong(19);
+        String str1 = "abc";
+        String str2 = "abcdert";
+        int k = 10;
+        System.out.println(appendAndDelete(str1, str2, k));
+
     }
 
 }
