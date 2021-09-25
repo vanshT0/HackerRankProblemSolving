@@ -857,39 +857,165 @@ public class ques {
 
         int diff = n - m;
 
-        if(diff > 0){
-            if(diff % 2 == 0 && k % 2 ==0) str = "Yes";
-            else if(diff % 2 != 0 && k % 2 !=0) str = "Yes";
-            else str = "No";
+        if (diff > 0) {
+            if (diff % 2 == 0 && k % 2 == 0)
+                str = "Yes";
+            else if (diff % 2 != 0 && k % 2 != 0)
+                str = "Yes";
+            else
+                str = "No";
         }
-          
-        
+
         for (int i = 0; i < Math.min(m, n); i++) {
-            if (s.charAt(i) == t.charAt(i)){
+            if (s.charAt(i) == t.charAt(i)) {
                 count++;
 
-                System.out.println(s.charAt(i) + " " + count + " " +  t.charAt(i));
-            }
-            else{
+                System.out.println(s.charAt(i) + " " + count + " " + t.charAt(i));
+            } else {
                 break;
             }
-                
+
         }
-       
+
         if (m + n <= k)
-        return str;
+            return str;
 
         else {
 
             if (count == m && count == n && k >= 2)
                 return str;
 
-            if (k < (m + n) - (2 * count) )
+            if (k < (m + n) - (2 * count))
                 str = "No";
         }
         return str;
 
     }
+
+    public static int count(int n, int k, int[] h) {
+        int ans = 1;
+        for (int i = 0; i < h.length - 1; i++) {
+            int count = 0;
+            for (int j = i + 1; j < h.length; j++) {
+
+                if (h[i] >= h[j])
+                    count++;
+
+            }
+            if (count >= k)
+                ans++;
+
+        }
+        return ans;
+    }
+
+    // Insertion Sort
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static boolean isGreater(int[] arr, int j, int i) {
+
+        if (arr[i] < arr[j]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Insertion 
+
+    public static void insertionSort1(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (isGreater(arr, j, j + 1)) {
+                    swap(arr, j, j + 1);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    // Super Reduced Strings
+
+    public static String superReducedString(String s) {
+        String str = "Empty String";
+        if (s.length() == 1)
+            return s;
+        int i = 0;
+        int j = 1;
+
+        while (j < s.length()) {
+            if (s.charAt(0) == s.charAt(1)) {
+                s = s.substring(2);
+            } else if (s.charAt(i) != s.charAt(j)) {
+                i++;
+                j++;
+            }
+
+            else {
+                s = s.substring(0, i) + s.substring(j + 1);
+                i = i - 1;
+                j = j - 1;
+            }
+        }
+
+        System.out.println(i + " " + j);
+        if (s.length() == 0)
+            return str;
+        return s;
+
+    }
+
+    // mars Exploration
+
+    public static int marsExploration(String s) {
+        int count = 0;
+        String sos = "SOS";
+        for (int i = 0; i < s.length(); i++) {
+
+            if (s.charAt(i) != sos.charAt(i % 3))
+                count++;
+
+        }
+        return count;
+    }
+
+
+// Pangram
+
+    public static String panagram(String s) {
+        s = s.toLowerCase();
+        String ans = "pangram";
+        String str = "abcdefghijklmnopqrstuvwxyz";
+        int i = 0, j = 0, count = 0;
+        // System.out.println(s.charAt());
+        while(i < str.length() && j < s.length()){
+            if(str.charAt(i) != s.charAt(j)){
+                j++;
+            }
+
+            else if(str.charAt(i) == s.charAt(j)){
+                i++;
+                j = 0;
+                count++;
+            }
+           
+        }
+        if(count != 26) ans = "not pangram";
+        System.out.println(count);
+        return ans;
+
+    }
+
+
+    
 
     public static void main(String[] args) {
         // List<Integer> list = new ArrayList<Integer>();
@@ -900,10 +1026,15 @@ public class ques {
         // list.add(2);
         // list.add(8);
 
-        String str1 = "abc";
-        String str2 = "abcdert";
-        int k = 10;
-        System.out.println(appendAndDelete(str1, str2, k));
+        // int[] count = {9,5,6,7,4};
+        // insertionSort1(count);
+        // for(int i = 0; i < count.length; i++){
+        // System.out.print(count[i] + " ");
+
+        // }
+        String str2 = "NOVmETKPTbYu ftZPEykhjgF GGkdGjWGwW skjPJsea dtwdqcr DERCUgxOxrRgDQbdzL IZjyXs";
+       
+        System.out.print(panagram(str2));
 
     }
 
