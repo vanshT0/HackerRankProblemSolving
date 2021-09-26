@@ -927,7 +927,7 @@ public class ques {
         }
     }
 
-    // Insertion 
+    // Insertion
 
     public static void insertionSort1(int[] arr) {
         int n = arr.length;
@@ -987,44 +987,165 @@ public class ques {
         return count;
     }
 
-
-// Pangram
+    // Pangram
 
     public static String panagram(String s) {
         s = s.toLowerCase();
         String ans = "pangram";
         String str = "abcdefghijklmnopqrstuvwxyz";
         int i = 0, j = 0, count = 0;
-        // System.out.println(s.charAt());
-        while(i < str.length() && j < s.length()){
-            if(str.charAt(i) != s.charAt(j)){
+        ;
+        while (i < str.length() && j < s.length()) {
+            if (str.charAt(i) != s.charAt(j)) {
                 j++;
             }
 
-            else if(str.charAt(i) == s.charAt(j)){
+            else if (str.charAt(i) == s.charAt(j)) {
                 i++;
                 j = 0;
                 count++;
             }
-           
+
         }
-        if(count != 26) ans = "not pangram";
+        if (count != 26)
+            ans = "not pangram";
         System.out.println(count);
         return ans;
 
     }
 
+    public static void weightedUniformStrings(String s) {
 
+        List<Integer> ll = new ArrayList<Integer>();
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            int count = 0;
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                count++;
+                System.out.println(s.charAt(i) + " - >" + count);
+            } else {
+                count++;
+                System.out.println(s.charAt(i) + " - >" + count);
+            }
+
+        }
+
+    }
+
+    // Palindrome Array
+
+    public static boolean palindromeArray(ArrayList<Integer> arr) {
+        boolean flag = true;
+        int i = 0, j = arr.size() - 1;
+        while (i < arr.size() / 2) {
+            if (arr.get(i) == arr.get(j)) {
+                i++;
+                j--;
+            } else {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+
+    public static String funnyString(String s) {
+        String ans = "Funny";
+        ArrayList<Integer> ll1 = new ArrayList<Integer>();
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            ll1.add(Math.abs(s.charAt(i) - s.charAt(i + 1)));
+        }
+
+        if (!palindromeArray(ll1))
+            ans = "Not Funny";
+        return ans;
+
+    }
+
+    // GemStone
+
+    // public static int gemstones(List<String> arr) {
+    // int j = 0, count = 0;
+    // for(int i = 1; i < arr.size(); i++){
+    // String str = arr.get(j);
+    // String str2 = arr.get(i);
+
+    // int len = str.length();
+
+    // for(int k = 0 ; k < len; k++){
+    // if(str.charAt(k) == str2.charAt(k)) count++;
+
+    // }
+
+    // }
+
+    // }
+
+    // Alternating Character
+    public static int alternatingCharacters(String s) {
+
+        int count = 0;
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+
+                count++;
+            }
+        }
+        return count;
+
+    }
+
+    // Love Letter
+
+    public static int theLoveLetterMystery(String s) {
+
+        int i = 0;
+        int j = s.length() - 1;
+        int count = 0;
+        if (s.length() == 1)
+            return count;
+
+        while (i < s.length() / 2) {
+            if (s.charAt(i) == s.charAt(j)) {
+                i++;
+                j--;
+            } else {
+                count = count + Math.abs(s.charAt(i) - s.charAt(j));
+                i++;
+                j--;
+            }
+        }
+
+        return count;
+    }
+
+    // hackerRank String
+    public static String hackerrankInString(String s) {
+        String str = "hackerrank"; int count = 0; String ans = "YES";
+        if(s.length() < str.length()) ans = "NO";
     
+        for (int i = 0; i < s.length(); i++) {
+           if(count < 10 && s.charAt(i) == str.charAt(count)){
+               count++;
+           }
+        }
+        System.out.println(count);
+        if(count != 10) ans = "NO";
+        return ans;     
+    }
 
     public static void main(String[] args) {
-        // List<Integer> list = new ArrayList<Integer>();
-        // list.add(5);
-        // list.add(4);
-        // list.add(4);
+        // ArrayList<Integer> list = new ArrayList<Integer>();
+        // list.add(1);
         // list.add(2);
+        // list.add(7);
+        // list.add(3);
         // list.add(2);
-        // list.add(8);
+        // list.add(1);
+        String str2 = "hackerrankii";
+        // funnyString(str2);
+        System.out.println(hackerrankInString(str2));
 
         // int[] count = {9,5,6,7,4};
         // insertionSort1(count);
@@ -1032,9 +1153,13 @@ public class ques {
         // System.out.print(count[i] + " ");
 
         // }
-        String str2 = "NOVmETKPTbYu ftZPEykhjgF GGkdGjWGwW skjPJsea dtwdqcr DERCUgxOxrRgDQbdzL IZjyXs";
-       
-        System.out.print(panagram(str2));
+        // String str = scn.nextLine();
+        // int n = scn.nextInt();
+        // int[] count = new int[n];
+        // String str2 = "abccddde";
+
+        // // System.out.print(panagram(str2));
+        // weightedUniformStrings(str2);
 
     }
 
