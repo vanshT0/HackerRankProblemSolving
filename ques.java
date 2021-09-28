@@ -1014,23 +1014,23 @@ public class ques {
 
     }
 
-    public static void weightedUniformStrings(String s) {
 
-        List<Integer> ll = new ArrayList<Integer>();
 
-        for (int i = 0; i < s.length() - 1; i++) {
-            int count = 0;
-            if (s.charAt(i) == s.charAt(i + 1)) {
-                count++;
-                System.out.println(s.charAt(i) + " - >" + count);
-            } else {
-                count++;
-                System.out.println(s.charAt(i) + " - >" + count);
-            }
+    // public static void weightedUniformStrings(String s) {
 
-        }
+    //     List<Integer> ll = new ArrayList<Integer>();
 
-    }
+    //     for (int i = 0; i < s.length() - 1; i++) {
+          
+    //         int w = s.charAt(i) - 96;
+    //         int currW = 
+    //         if(s.charAt(i) == s.charAt(i+1)){
+
+    //         }
+
+    //     }
+
+    // }
 
     // Palindrome Array
 
@@ -1135,6 +1135,54 @@ public class ques {
         return ans;     
     }
 
+
+    
+
+    public static String swapChars(String str, int lIdx, int rIdx) {
+        StringBuilder sb = new StringBuilder(str);
+        char l = sb.charAt(lIdx), r = sb.charAt(rIdx);
+        sb.setCharAt(lIdx, r);
+        sb.setCharAt(rIdx, l);
+        return sb.toString();
+    }
+
+    public static String pass(String str){
+        // String ans = str.replace("*", "");
+        str = str.replace("*", "");
+           
+            for(int i = 0; i < str.length() - 1; i++){
+                if(str.charAt(i+1) >= 'a' && str.charAt(i+1) <= 'z' && str.charAt(i) <= 'Z'  && str.charAt(i) >= 'A' ){
+                   str =  swapChars(str, i+1, i);
+                } 
+
+            }
+
+           
+            return str;
+
+    }
+
+    public static String decryptPassword(String s) {
+
+        String str = pass(s);
+        int i = 0; int j = str.length() - 1;
+
+        while(i != j){
+            if(str.charAt(i) <= '9' && str.charAt(i) >= '1' && str.charAt(j) == '0') {
+                str =  swapChars(str, i, j);
+               
+                i++;
+                j--;
+            }
+            else{
+                j--;
+            } 
+          
+        }
+        str = str.replace("0", "");
+        return str;
+        }
+
     public static void main(String[] args) {
         // ArrayList<Integer> list = new ArrayList<Integer>();
         // list.add(1);
@@ -1143,10 +1191,11 @@ public class ques {
         // list.add(3);
         // list.add(2);
         // list.add(1);
-        String str2 = "hackerrankii";
-        // funnyString(str2);
-        System.out.println(hackerrankInString(str2));
+        String str2 = "51Pa*0Lp*0e";
+       
+        System.out.println(decryptPassword(str2));
 
+        // swapChar(str2,'a','b');
         // int[] count = {9,5,6,7,4};
         // insertionSort1(count);
         // for(int i = 0; i < count.length; i++){
