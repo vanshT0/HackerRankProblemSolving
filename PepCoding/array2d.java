@@ -44,21 +44,40 @@ public class array2d {
 
         int n = arr.length;
         int m = arr[0].length;
-        for (int i = 0; i < m; i++) {
-            if (i % 2 == 0) {
-                for (int j = 0; j < n; j++) {
+      
+        int total = n * m;
+        int count = 0;
 
-                    System.out.println(arr[j][i] );
-                }
+
+        int sRow = 0;
+        int eRow = n - 1;
+        int sCol = 0;
+        int eCol = m - 1;
+
+        while(count < total){
+            for(int i = sRow, j = sCol; i < eRow && count < total; i++){
+                System.out.println(arr[i][j]);
+                count++;
             }
+            sCol++;
 
-            else {
-                for (int j = n - 1; j >= 0; j--) {
-
-                    System.out.println(arr[j][i] );
-                }
+            for(int i = eRow, j = eCol; i > sRow && count < total; i--){
+                System.out.println(arr[i][j]);
+                count++;
             }
-            
+            eCol--;
+
+            for(int j = sCol, i = sRow; j < eCol && count < total; j++){
+                System.out.println(arr[i][j]);
+                count++;
+            }
+            sRow++;
+
+            for(int j = eCol, i = eRow; j > sCol && count < total; j--){
+                System.out.println(arr[i][j]);
+                count++;
+            }
+            eRow--;
 
         }
     }
@@ -76,7 +95,7 @@ public class array2d {
             }
         }
 
-        wakanda(arr);
+        spiral(arr);
 
     }
 }
